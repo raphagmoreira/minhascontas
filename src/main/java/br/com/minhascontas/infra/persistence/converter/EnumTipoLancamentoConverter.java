@@ -14,8 +14,8 @@ public class EnumTipoLancamentoConverter implements AttributeConverter<EnumTipoL
     }
 
     @Override
-    public EnumTipoLancamento convertToEntityAttribute(Integer tipoProcesso) {
-        return tipoProcesso == null ? null : EnumTipoLancamento.getById(tipoProcesso);
+    public EnumTipoLancamento convertToEntityAttribute(Integer idTipoLancamento) {
+        return idTipoLancamento == null ? null : EnumTipoLancamento.getById(idTipoLancamento);
     }
 
 }

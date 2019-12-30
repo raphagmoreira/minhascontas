@@ -1,6 +1,10 @@
 package br.com.minhascontas.domain.entity;
 
+import br.com.minhascontas.domain.enums.EnumPeriodicidade;
+import br.com.minhascontas.domain.enums.EnumSituacaoLancamento;
 import br.com.minhascontas.domain.enums.EnumTipoLancamento;
+import br.com.minhascontas.infra.persistence.converter.EnumPeriodicidadeConverter;
+import br.com.minhascontas.infra.persistence.converter.EnumSituacaoLancamentoConverter;
 import br.com.minhascontas.infra.persistence.converter.EnumTipoLancamentoConverter;
 
 import javax.persistence.*;
@@ -28,7 +32,7 @@ public class Lancamento implements Serializable {
     @NotNull
     @Column(name = "FK_TIPO_LANCAMENTO")
     @Convert(converter = EnumTipoLancamentoConverter.class)
-    private EnumTipoLancamento enumTipoLancamento;
+    private EnumTipoLancamento tipoLancamento;
 
     @NotNull
     @Column(name = "VALOR")
@@ -37,6 +41,18 @@ public class Lancamento implements Serializable {
     @NotNull
     @Column(name = "DATA_LANCAMENTO")
     private Date dataVencimento;
+
+    @Column(name = "FK_SITUACAO")
+    @Convert(converter = EnumSituacaoLancamentoConverter.class)
+    private EnumSituacaoLancamento situacao;
+
+    @Column(name = "FK_PERIODICIDADE")
+    @Convert(converter = EnumPeriodicidadeConverter.class)
+    private EnumPeriodicidade periodicidade;
+
+    @NotNull
+    @Column(name = "QUANTIDADE_PERIODO")
+    private Integer quantidadePeriodo;
 
     public Lancamento() {}
 
