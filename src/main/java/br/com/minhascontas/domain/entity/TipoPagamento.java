@@ -1,5 +1,7 @@
 package br.com.minhascontas.domain.entity;
 
+import com.querydsl.core.annotations.QueryProjection;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -21,6 +23,17 @@ public class TipoPagamento implements Serializable {
     private String descricao;
 
     public TipoPagamento() {}
+
+    @QueryProjection
+    public TipoPagamento(Long id) {
+        this.id = id;
+    }
+
+    @QueryProjection
+    public TipoPagamento(Long id, String descricao) {
+        this.id = id;
+        this.descricao = descricao;
+    }
 
     public Long getId() {
         return id;
