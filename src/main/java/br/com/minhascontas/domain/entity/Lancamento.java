@@ -94,6 +94,87 @@ public class Lancamento implements Serializable {
         this.dataVencimento = dataVencimento;
     }
 
+    @QueryProjection
+    public Lancamento(Long id, String descricao, BigDecimal valor, Date dataVencimento, EnumSituacaoLancamento situacao) {
+        this.id = id;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.dataVencimento = dataVencimento;
+        this.situacao = situacao;
+    }
+
+    @QueryProjection
+    public Lancamento(Long id,
+                      String descricao,
+                      BigDecimal valor,
+                      Date dataVencimento,
+                      EnumSituacaoLancamento situacao,
+                      EnumPeriodicidade periodicidade) {
+        this.id = id;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.dataVencimento = dataVencimento;
+        this.situacao = situacao;
+        this.periodicidade = periodicidade;
+    }
+
+    @QueryProjection
+    public Lancamento(Long id,
+                      String descricao,
+                      BigDecimal valor,
+                      Date dataVencimento,
+                      EnumSituacaoLancamento situacao,
+                      EnumPeriodicidade periodicidade,
+                      Integer quantidadePeriodo) {
+        this.id = id;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.dataVencimento = dataVencimento;
+        this.situacao = situacao;
+        this.periodicidade = periodicidade;
+        this.quantidadePeriodo = quantidadePeriodo;
+    }
+
+    @QueryProjection
+    public Lancamento(Long id,
+                      String descricao,
+                      BigDecimal valor,
+                      Date dataVencimento,
+                      EnumSituacaoLancamento situacao,
+                      EnumPeriodicidade periodicidade,
+                      Integer quantidadePeriodo,
+                      Categoria categoria) {
+        this.id = id;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.dataVencimento = dataVencimento;
+        this.situacao = situacao;
+        this.periodicidade = periodicidade;
+        this.quantidadePeriodo = quantidadePeriodo;
+        this.categoria = categoria;
+    }
+
+    @QueryProjection
+    public Lancamento(Long id,
+                      String descricao,
+                      BigDecimal valor,
+                      Date dataVencimento,
+                      EnumSituacaoLancamento situacao,
+                      EnumPeriodicidade periodicidade,
+                      Integer quantidadePeriodo,
+                      Categoria categoria,
+                      TipoPagamento tipoPagamento) {
+        this.id = id;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.dataVencimento = dataVencimento;
+        this.situacao = situacao;
+        this.periodicidade = periodicidade;
+        this.quantidadePeriodo = quantidadePeriodo;
+        this.categoria = categoria;
+        this.tipoPagamento = tipoPagamento;
+    }
+
     public Long getId() {
         return id;
     }
