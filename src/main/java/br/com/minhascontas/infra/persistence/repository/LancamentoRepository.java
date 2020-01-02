@@ -57,7 +57,9 @@ public class LancamentoRepository extends RepositoryAbstract<Lancamento, Long> {
                                 )
                         )
                 )
-                .from(qLancamento);
+                .from(qLancamento)
+                .join(qLancamento.categoria, qCategoria)
+                .join(qLancamento.tipoPagamento, qTipoPagamento);
 
         if (Objects.nonNull(filter)) {
             if (Objects.nonNull(filter.getId())) {
@@ -66,6 +68,34 @@ public class LancamentoRepository extends RepositoryAbstract<Lancamento, Long> {
 
             if (Objects.nonNull(filter.getDescricao())) {
                 jpaQuery.where(qLancamento.descricao.likeIgnoreCase("%" + filter.getDescricao() + "%"));
+            }
+
+            if (Objects.nonNull(filter.getValor())) {
+                jpaQuery.where(qLancamento.valor.eq(filter.getValor()));
+            }
+
+            if (Objects.nonNull(filter.getDataVencimento())) {
+                jpaQuery.where(qLancamento.dataVencimento.eq(filter.getDataVencimento()));
+            }
+
+            if (Objects.nonNull(filter.getSituacao())) {
+                jpaQuery.where(qLancamento.situacao.eq(filter.getSituacao()));
+            }
+
+            if (Objects.nonNull(filter.getPeriodicidade())) {
+                jpaQuery.where(qLancamento.periodicidade.eq(filter.getPeriodicidade()));
+            }
+
+            if (Objects.nonNull(filter.getQuantidadePeriodo())) {
+                jpaQuery.where(qLancamento.quantidadePeriodo.eq(filter.getQuantidadePeriodo()));
+            }
+
+            if (Objects.nonNull(filter.getIdCategoria())) {
+                jpaQuery.where(qCategoria.id.eq(filter.getIdCategoria()));
+            }
+
+            if (Objects.nonNull(filter.getIdTipoPagamento())) {
+                jpaQuery.where(qTipoPagamento.id.eq(filter.getIdTipoPagamento()));
             }
         }
 
