@@ -2,8 +2,8 @@ package br.com.minhascontas.infra.persistence.repository;
 
 import br.com.minhascontas.domain.entity.Categoria;
 import br.com.minhascontas.domain.entity.QCategoria;
-import br.com.minhascontas.infra.persistence.repository.query.Filter;
-import br.com.minhascontas.infra.persistence.repository.query.filter.CategoriaFilter;
+import br.com.minhascontas.domain.query.filter.Filter;
+import br.com.minhascontas.domain.query.filter.CategoriaFilter;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;

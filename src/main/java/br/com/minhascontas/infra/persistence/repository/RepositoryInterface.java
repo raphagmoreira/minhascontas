@@ -1,6 +1,6 @@
 package br.com.minhascontas.infra.persistence.repository;
 
-import br.com.minhascontas.infra.persistence.repository.query.Filter;
+import br.com.minhascontas.domain.query.filter.Filter;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.data.domain.Page;

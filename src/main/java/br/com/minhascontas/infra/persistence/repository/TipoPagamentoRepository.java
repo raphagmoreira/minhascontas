@@ -2,8 +2,8 @@ package br.com.minhascontas.infra.persistence.repository;
 
 import br.com.minhascontas.domain.entity.QTipoPagamento;
 import br.com.minhascontas.domain.entity.TipoPagamento;
-import br.com.minhascontas.infra.persistence.repository.query.Filter;
-import br.com.minhascontas.infra.persistence.repository.query.filter.TipoPagamentoFilter;
+import br.com.minhascontas.domain.query.filter.Filter;
+import br.com.minhascontas.domain.query.filter.TipoPagamentoFilter;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;

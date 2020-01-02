@@ -1,7 +1,7 @@
 package br.com.minhascontas.domain.service;
 
 import br.com.minhascontas.domain.entity.TipoPagamento;
-import br.com.minhascontas.infra.persistence.repository.query.Filter;
+import br.com.minhascontas.domain.query.filter.Filter;
 import br.com.minhascontas.infra.persistence.repository.TipoPagamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -1,7 +1,6 @@
-package br.com.minhascontas.infra.persistence.repository.query.filter;
+package br.com.minhascontas.domain.query.filter;
 
 import br.com.minhascontas.domain.entity.TipoPagamento;
-import br.com.minhascontas.infra.persistence.repository.query.Filter;
 
 /**
  * Created by Rapha on 31/12/2019.

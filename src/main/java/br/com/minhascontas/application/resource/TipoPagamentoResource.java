@@ -4,7 +4,7 @@ import br.com.minhascontas.configuration.annotation.QueryParam;
 import br.com.minhascontas.domain.dto.RestResponseDTO;
 import br.com.minhascontas.domain.entity.TipoPagamento;
 import br.com.minhascontas.domain.service.TipoPagamentoService;
-import br.com.minhascontas.infra.persistence.repository.query.filter.TipoPagamentoFilter;
+import br.com.minhascontas.domain.query.filter.TipoPagamentoFilter;
 import br.com.minhascontas.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

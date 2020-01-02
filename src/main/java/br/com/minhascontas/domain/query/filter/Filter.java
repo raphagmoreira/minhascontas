@@ -1,4 +1,4 @@
-package br.com.minhascontas.infra.persistence.repository.query;
+package br.com.minhascontas.domain.query.filter;
 
 import java.io.Serializable;
 
