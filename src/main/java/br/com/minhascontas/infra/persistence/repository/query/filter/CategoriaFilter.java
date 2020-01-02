@@ -1,7 +1,7 @@
-package br.com.minhascontas.infra.persistence.query.impl;
+package br.com.minhascontas.infra.persistence.repository.query.filter;
 
 import br.com.minhascontas.domain.entity.Categoria;
-import br.com.minhascontas.infra.persistence.query.Filter;
+import br.com.minhascontas.infra.persistence.repository.query.Filter;
 
 /**
  * Created by Rapha on 31/12/2019.

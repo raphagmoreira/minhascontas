@@ -1,58 +1,29 @@
 package br.com.minhascontas.domain.service;
 
 import br.com.minhascontas.domain.entity.Categoria;
-import br.com.minhascontas.domain.exception.EntityNotFoundException;
-import br.com.minhascontas.infra.persistence.query.Query;
-import br.com.minhascontas.infra.persistence.query.Sorter;
-import br.com.minhascontas.infra.persistence.query.impl.CategoriaFilter;
+import br.com.minhascontas.infra.persistence.repository.query.Filter;
 import br.com.minhascontas.infra.persistence.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by Rapha on 31/12/2019.
  */
 @Service
-public class CategoriaService implements Serializable {
+public class CategoriaService extends ServiceAbstract<Categoria,Long> {
 
-    @Autowired
     private CategoriaRepository categoriaRepository;
 
-    public List<Categoria> find(CategoriaFilter categoriaFilter,
-                                String sortProperty,
-                                Sorter.Direction sortDirection,
-                                Long page) {
-        //Constrói a query para a entidade Pessoa
-        final Query<Categoria> query = Query.<Categoria>builder()
-                .filter(categoriaFilter)
-                .sort(Sorter.<Categoria>by(sortProperty).direction(sortDirection))
-                .page(page)
-                .build();
-
-        return categoriaRepository.find(query);
+    @Autowired
+    public CategoriaService(CategoriaRepository categoriaRepository) {
+        super(categoriaRepository);
+        this.categoriaRepository = categoriaRepository;
     }
 
-    public Categoria findById(Long id) {
-        return categoriaRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-    }
-
-    @Transactional
-    public void create(Categoria categoria) {
-        categoriaRepository.create(categoria);
-    }
-
-    @Transactional
-    public void update(Categoria categoria) {
-        categoriaRepository.update(categoria);
-    }
-
-    @Transactional
-    public void remove(Long idCategoria) {
-        categoriaRepository.removeById(idCategoria);
+    public Page<Categoria> find(Filter<Categoria> filter, Pageable pageable) {
+        return categoriaRepository.find(filter,pageable);
     }
 
 }

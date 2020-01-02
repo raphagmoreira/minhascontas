@@ -1,4 +1,4 @@
-package br.com.minhascontas.infra.persistence.query;
+package br.com.minhascontas.infra.persistence.repository.query;
 
 import java.io.Serializable;
 
