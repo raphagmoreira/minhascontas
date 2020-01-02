@@ -13,10 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Rapha on 31/12/2019.
@@ -33,13 +32,22 @@ public class LancamentoResource extends ControllerAbstract<Lancamento, Long> {
         this.lancamentoService = lancamentoService;
     }
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RestResponseDTO<Page<Lancamento>>> find(@QueryParam LancamentoFilter lancamentoFilter,
                                                                  Pageable pageable) {
         return new RestResponseDTO<>(
                 lancamentoService.find(lancamentoFilter, pageable),
                 Util.getMessageApplication("entity.read"),
                 HttpStatus.OK
+        ).returnEntity();
+    }
+
+    @PostMapping(value = "/addLancamento", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RestResponseDTO<Lancamento>> addLancamento(@RequestBody Lancamento lancamento) {
+        return new RestResponseDTO<>(
+                lancamentoService.createLancamento(lancamento),
+                Util.getMessageApplication("entity.created"),
+                HttpStatus.CREATED
         ).returnEntity();
     }
 

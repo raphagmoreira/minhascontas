@@ -6,6 +6,7 @@ import br.com.minhascontas.domain.enums.EnumSituacaoLancamento;
 import br.com.minhascontas.domain.enums.EnumTipoLancamento;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ public class LancamentoFilter implements Filter<Lancamento> {
     private String descricao;
     private EnumTipoLancamento tipoLancamento;
     private BigDecimal valor;
-    private Date dataVencimento;
+    private LocalDate dataVencimento;
     private EnumSituacaoLancamento situacao;
     private EnumPeriodicidade periodicidade;
     private Integer quantidadePeriodo;
@@ -28,7 +29,7 @@ public class LancamentoFilter implements Filter<Lancamento> {
                             String descricao,
                             EnumTipoLancamento tipoLancamento,
                             BigDecimal valor,
-                            Date dataVencimento,
+                            LocalDate dataVencimento,
                             EnumSituacaoLancamento situacao,
                             EnumPeriodicidade periodicidade,
                             Integer quantidadePeriodo,
@@ -62,7 +63,7 @@ public class LancamentoFilter implements Filter<Lancamento> {
         return valor;
     }
 
-    public Date getDataVencimento() {
+    public LocalDate getDataVencimento() {
         return dataVencimento;
     }
 

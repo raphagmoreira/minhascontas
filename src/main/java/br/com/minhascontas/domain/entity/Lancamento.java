@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "LANCAMENTO")
@@ -42,7 +42,7 @@ public class Lancamento implements Serializable {
 
     @NotNull
     @Column(name = "DATA_LANCAMENTO")
-    private Date dataVencimento;
+    private LocalDate dataVencimento;
 
     @Column(name = "FK_SITUACAO")
     @Convert(converter = EnumSituacaoLancamentoConverter.class)
@@ -55,6 +55,10 @@ public class Lancamento implements Serializable {
     @NotNull
     @Column(name = "QUANTIDADE_PERIODO")
     private Integer quantidadePeriodo;
+
+    @NotNull
+    @Column(name = "PARCELA")
+    private Integer parcela;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -87,7 +91,7 @@ public class Lancamento implements Serializable {
     }
 
     @QueryProjection
-    public Lancamento(Long id, String descricao, BigDecimal valor, Date dataVencimento) {
+    public Lancamento(Long id, String descricao, BigDecimal valor, LocalDate dataVencimento) {
         this.id = id;
         this.descricao = descricao;
         this.valor = valor;
@@ -95,7 +99,7 @@ public class Lancamento implements Serializable {
     }
 
     @QueryProjection
-    public Lancamento(Long id, String descricao, BigDecimal valor, Date dataVencimento, EnumSituacaoLancamento situacao) {
+    public Lancamento(Long id, String descricao, BigDecimal valor, LocalDate dataVencimento, EnumSituacaoLancamento situacao) {
         this.id = id;
         this.descricao = descricao;
         this.valor = valor;
@@ -107,7 +111,7 @@ public class Lancamento implements Serializable {
     public Lancamento(Long id,
                       String descricao,
                       BigDecimal valor,
-                      Date dataVencimento,
+                      LocalDate dataVencimento,
                       EnumSituacaoLancamento situacao,
                       EnumPeriodicidade periodicidade) {
         this.id = id;
@@ -122,7 +126,7 @@ public class Lancamento implements Serializable {
     public Lancamento(Long id,
                       String descricao,
                       BigDecimal valor,
-                      Date dataVencimento,
+                      LocalDate dataVencimento,
                       EnumSituacaoLancamento situacao,
                       EnumPeriodicidade periodicidade,
                       Integer quantidadePeriodo) {
@@ -139,7 +143,7 @@ public class Lancamento implements Serializable {
     public Lancamento(Long id,
                       String descricao,
                       BigDecimal valor,
-                      Date dataVencimento,
+                      LocalDate dataVencimento,
                       EnumSituacaoLancamento situacao,
                       EnumPeriodicidade periodicidade,
                       Integer quantidadePeriodo,
@@ -158,7 +162,7 @@ public class Lancamento implements Serializable {
     public Lancamento(Long id,
                       String descricao,
                       BigDecimal valor,
-                      Date dataVencimento,
+                      LocalDate dataVencimento,
                       EnumSituacaoLancamento situacao,
                       EnumPeriodicidade periodicidade,
                       Integer quantidadePeriodo,
@@ -207,11 +211,11 @@ public class Lancamento implements Serializable {
         this.valor = valor;
     }
 
-    public Date getDataVencimento() {
+    public LocalDate getDataVencimento() {
         return dataVencimento;
     }
 
-    public void setDataVencimento(Date dataVencimento) {
+    public void setDataVencimento(LocalDate dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
 
@@ -253,5 +257,13 @@ public class Lancamento implements Serializable {
 
     public void setTipoPagamento(TipoPagamento tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
+    }
+
+    public Integer getParcela() {
+        return parcela;
+    }
+
+    public void setParcela(Integer parcela) {
+        this.parcela = parcela;
     }
 }
