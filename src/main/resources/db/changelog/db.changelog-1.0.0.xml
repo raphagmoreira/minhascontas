@@ -1,0 +1,140 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <!--TABELA CATEGORIA-->
+    <changeSet author="raphael.moreira" id="create-table-CATEGORIA">
+        <createTable tableName="CATEGORIA">
+            <column autoIncrement="${autoIncrement}" name="ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CATEGORIA"/>
+            </column>
+            <column name="DESCRICAO" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--POPULA A TABELA-->
+    <changeSet author="raphael.moreira" id="INSERT-CATEGORIA">
+        <insert tableName="CATEGORIA">
+            <column name="DESCRICAO" value="ALIMENTAÇÃO"/>
+        </insert>
+
+        <insert tableName="CATEGORIA">
+            <column name="DESCRICAO" value="LAZER"/>
+        </insert>
+
+        <insert tableName="CATEGORIA">
+            <column name="DESCRICAO" value="MORADIA"/>
+        </insert>
+
+        <insert tableName="CATEGORIA">
+            <column name="DESCRICAO" value="OUTROS"/>
+        </insert>
+    </changeSet>
+
+    <!--TABELA CATEGORIA-->
+    <changeSet author="raphael.moreira" id="create-table-TIPO_PAGAMENTO">
+        <createTable tableName="TIPO_PAGAMENTO">
+            <column autoIncrement="${autoIncrement}" name="ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TIPO_PAGAMENTO"/>
+            </column>
+            <column name="DESCRICAO" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--POPULA A TABELA-->
+    <changeSet author="raphael.moreira" id="INSERT-TIPO_PAGAMENTO">
+        <insert tableName="TIPO_PAGAMENTO">
+            <column name="DESCRICAO" value="CARTÃO DE CRÉDITO"/>
+        </insert>
+
+        <insert tableName="TIPO_PAGAMENTO">
+            <column name="DESCRICAO" value="CARTÃO DE DÉBITO"/>
+        </insert>
+
+        <insert tableName="TIPO_PAGAMENTO">
+            <column name="DESCRICAO" value="PRESTAÇÃO"/>
+        </insert>
+
+        <insert tableName="TIPO_PAGAMENTO">
+            <column name="DESCRICAO" value="DESPESA FIXA"/>
+        </insert>
+
+        <insert tableName="TIPO_PAGAMENTO">
+            <column name="DESCRICAO" value="DESPESA VARIÁVEL"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="raphael.moreira" id="create-table-LANCAMENTO">
+        <createTable tableName="LANCAMENTO">
+            <column autoIncrement="${autoIncrement}" name="ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_LANCAMENTO"/>
+            </column>
+
+            <column name="DESCRICAO" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="FK_TIPO_LANCAMENTO" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="VALOR" type="DECIMAL(14, 2)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="DATA_LANCAMENTO" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="FK_SITUACAO" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="FK_PERIODICIDADE" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="QUANTIDADE_PERIODO" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="FK_CATEGORIA" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="FK_TIPO_PAGAMENTO" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--Relationships-->
+    <changeSet id="CREATE-RELATION-CATEGORIA-IN-LANCAMENTO" author="raphael.moreira">
+        <addForeignKeyConstraint baseColumnNames="FK_CATEGORIA" baseTableName="LANCAMENTO"
+                                 constraintName="FK_CATEGORIA_LANCAMENTO"
+                                 referencedColumnNames="ID" referencedTableName="CATEGORIA"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+                                 onUpdate="NO ACTION"/>
+    </changeSet>
+
+    <changeSet id="CREATE-RELATION-TIPO_PAGAMENTO-IN-LANCAMENTO" author="raphael.moreira">
+        <addForeignKeyConstraint baseColumnNames="FK_TIPO_PAGAMENTO" baseTableName="LANCAMENTO"
+                                 constraintName="FK_TIPO_PAGAMENTO_LANCAMENTO"
+                                 referencedColumnNames="ID" referencedTableName="TIPO_PAGAMENTO"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+                                 onUpdate="NO ACTION"/>
+    </changeSet>
+
+    <!--Sequences-->
+    <changeSet author="raphael.moreira" id="create-sequence-1.0.0" dbms="${dbmsSequence}">
+        <createSequence sequenceName="SEQ_CATEGORIA"/>
+        <createSequence sequenceName="SEQ_TIPO_PAGAMENTO"/>
+        <createSequence sequenceName="SEQ_LANCAMENTO"/>
+    </changeSet>
+</databaseChangeLog>
