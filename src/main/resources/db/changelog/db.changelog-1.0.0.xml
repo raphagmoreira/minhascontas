@@ -118,6 +118,30 @@
         </createTable>
     </changeSet>
 
+    <!-- TABELA USUÁRIOS -->
+    <changeSet author="raphael.moreira" id="create-table-USER">
+        <createTable tableName="USER">
+            <column autoIncrement="${autoIncrement}" name="ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_USER"/>
+            </column>
+            <column name="USER" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="PASSWORD" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- POPULA TABELA USUÁRIOS -->
+    <changeSet author="raphael.moreira" id="insert-user">
+        <insert tableName="USER">
+            <column name="USER" value="RAPHAELMOREIRA"/>
+            <column name="PASSWORD" value="$2a$10$HBQL7s2.BYd116j3TvK7TeAcUAtfjBVYJmKsYZ65v0LmvsKza7vLy"/>
+        </insert>
+    </changeSet>
+
     <!--Relationships-->
     <changeSet id="CREATE-RELATION-CATEGORIA-IN-LANCAMENTO" author="raphael.moreira">
         <addForeignKeyConstraint baseColumnNames="FK_CATEGORIA" baseTableName="LANCAMENTO"
