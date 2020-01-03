@@ -191,12 +191,12 @@
             </plugin> -->
 
             <!-- Docker Plugin -->
-            <!--<plugin>
+            <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.13</version>
                 <configuration>
-                    <imageName>raphagmoreira/estudo-spring</imageName>
+                    <imageName>raphagmoreira/minhascontas</imageName>
                     <imageTags>
                         <imageTag>latest</imageTag>
                     </imageTags>
@@ -206,11 +206,11 @@
                         <resource>
                             <targetPath>/</targetPath>
                             <directory>${project.build.directory}</directory>
-                            <include>projeto-querydsl-1.0-SNAPSHOT.jar</include>
+                            <include>minhascontas-1.0-SNAPSHOT.jar</include>
                         </resource>
                     </resources>
                 </configuration>
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
 
