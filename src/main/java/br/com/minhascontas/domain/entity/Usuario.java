@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "USER")
-public class User implements Serializable {
+public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,15 +24,15 @@ public class User implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
 
-    public User() {}
+    public Usuario() {}
 
     @QueryProjection
-    public User(Long id) {
+    public Usuario(Long id) {
         this.id = id;
     }
 
     @QueryProjection
-    public User(Long id, String user) {
+    public Usuario(Long id, String user) {
         this.id = id;
         this.user = user;
     }

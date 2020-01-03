@@ -1,7 +1,8 @@
 package br.com.minhascontas.security.service.impl;
 
+import br.com.minhascontas.domain.entity.Usuario;
 import br.com.minhascontas.domain.exception.UserNotFoundException;
-import br.com.minhascontas.infra.persistence.repository.UserRepository;
+import br.com.minhascontas.infra.persistence.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,16 +18,15 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsuarioRepository usuarioRepository;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UserNotFoundException {
         try {
-            br.com.minhascontas.domain.entity.User user = userRepository.findByUser(login);
+            Usuario usuario = usuarioRepository.findByUser(login);
             Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-            //grantedAuthorities.add(new SimpleGrantedAuthority("ADMIN"));
 
-            return User.withUsername(user.getUser()).password(user.getPassword()).authorities(grantedAuthorities).build();
+            return User.withUsername(usuario.getUser()).password(usuario.getPassword()).authorities(grantedAuthorities).build();
         } catch (NoSuchElementException e) {
             throw new UserNotFoundException();
         }

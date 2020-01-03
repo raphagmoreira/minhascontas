@@ -135,7 +135,7 @@
     </changeSet>
 
     <!-- POPULA TABELA USUÁRIOS -->
-    <changeSet author="raphael.moreira" id="insert-user">
+    <changeSet author="raphael.moreira" id="insert-usuario">
         <insert tableName="USER">
             <column name="USER" value="RAPHAELMOREIRA"/>
             <column name="PASSWORD" value="$2a$10$HBQL7s2.BYd116j3TvK7TeAcUAtfjBVYJmKsYZ65v0LmvsKza7vLy"/>

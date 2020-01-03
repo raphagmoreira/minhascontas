@@ -45,7 +45,6 @@ public class TokenAuthenticationService {
     public static Authentication getByToken(String token) throws SignatureException {
 
         try {
-
             Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 
             Jws<Claims> claims = Jwts.parser()
@@ -79,15 +78,10 @@ public class TokenAuthenticationService {
 
                 return null;
             }
-
         } catch (SignatureException e) {
-
             throw e;
-
         } catch (Exception e) {
-
             throw e;
-
         }
 
     }
@@ -95,7 +89,6 @@ public class TokenAuthenticationService {
     public static Authentication getAuthentication(HttpServletRequest request) throws SignatureException {
 
         try {
-
             String token = request.getHeader(HEADER_STRING);
 
             if (StringUtils.isNotEmpty(token)) {
@@ -103,13 +96,9 @@ public class TokenAuthenticationService {
             }
 
             return null;
-
         } catch (SignatureException e) {
-
             throw e;
-
         } catch (Exception e) {
-
             throw e;
         }
 
