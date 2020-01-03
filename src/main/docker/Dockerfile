@@ -1,7 +1,7 @@
 FROM tomcat:8-jre8
 MAINTAINER RGM
 
-EXPOSE 8080
+EXPOSE 8999
 
 ENV TZ=America/Sao_Paulo
 
