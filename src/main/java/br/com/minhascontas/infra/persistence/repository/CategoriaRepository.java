@@ -4,6 +4,7 @@ import br.com.minhascontas.domain.entity.Categoria;
 import br.com.minhascontas.domain.entity.QCategoria;
 import br.com.minhascontas.domain.query.filter.Filter;
 import br.com.minhascontas.domain.query.filter.CategoriaFilter;
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -34,12 +35,10 @@ public class CategoriaRepository extends RepositoryAbstract<Categoria, Long> {
         QCategoria qCategoria = QCategoria.categoria;
         final PathBuilder<Categoria> path = new PathBuilder<>(Categoria.class, "categoria");
 
-        final JPAQuery<Categoria> jpaQuery = new JPAQueryFactory(entityManager)
+        final JPAQuery<Tuple> jpaQuery = new JPAQueryFactory(entityManager)
                 .select(
-                        QCategoria.create(
-                                qCategoria.id,
-                                qCategoria.descricao
-                        )
+                        qCategoria.id,
+                        qCategoria.descricao
                 )
                 .from(qCategoria);
 

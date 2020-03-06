@@ -1,0 +1,14 @@
+version: "3"
+services:
+  minhascontas:
+    image: minhascontas:latest
+    container_name: minhas-contas
+    build:
+      ./
+    restart: always
+    volumes:
+      - ./jar:/jar
+    environment:
+      - "TZ=America/Sao_Paulo"
+    ports:
+      - "9000:9000"

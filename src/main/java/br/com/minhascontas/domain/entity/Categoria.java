@@ -24,12 +24,12 @@ public class Categoria implements Serializable {
 
     public Categoria() {}
 
-    @QueryProjection
+    //@QueryProjection
     public Categoria(Long id) {
         this.id = id;
     }
 
-    @QueryProjection
+    //@QueryProjection
     public Categoria(Long id, String descricao) {
         this.id = id;
         this.descricao = descricao;

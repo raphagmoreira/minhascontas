@@ -7,6 +7,9 @@ target/
 *.iml
 *.iws
 
+# Docker Jar
+src/main/docker/jar/
+
 # OS
 .DS_Store
 .DS_Store?

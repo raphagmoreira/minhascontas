@@ -142,6 +142,14 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.20</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -196,6 +204,26 @@
                     </execution>
                 </executions>
             </plugin> -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <echo>Copiando Jar...</echo>
+                                <copy file="${basedir}/target/minhascontas-1.0-SNAPSHOT.jar" tofile="${basedir}/src/main/docker/jar/minhascontas.jar"/>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <!-- Docker Plugin -->
             <plugin>
