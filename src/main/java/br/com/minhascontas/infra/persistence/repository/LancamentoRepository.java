@@ -37,7 +37,7 @@ public class LancamentoRepository extends RepositoryAbstract<Lancamento, Long> {
 
         final PathBuilder<Lancamento> path = new PathBuilder<>(Lancamento.class, "lancamento");
 
-        /*final JPAQuery<Lancamento> jpaQuery = new JPAQueryFactory(entityManager)
+        final JPAQuery<Lancamento> jpaQuery = new JPAQueryFactory(entityManager)
                 .select(
                         QLancamento.create(
                                 qLancamento.id,
@@ -99,9 +99,7 @@ public class LancamentoRepository extends RepositoryAbstract<Lancamento, Long> {
             }
         }
 
-        return orderAndPaging(jpaQuery,pageable,path);*/
-
-        return null;
+        return orderAndPaging(jpaQuery,pageable,path);
     }
 
     @Override

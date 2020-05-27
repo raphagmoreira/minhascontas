@@ -35,10 +35,12 @@ public class CategoriaRepository extends RepositoryAbstract<Categoria, Long> {
         QCategoria qCategoria = QCategoria.categoria;
         final PathBuilder<Categoria> path = new PathBuilder<>(Categoria.class, "categoria");
 
-        final JPAQuery<Tuple> jpaQuery = new JPAQueryFactory(entityManager)
+        final JPAQuery<Categoria> jpaQuery = new JPAQueryFactory(entityManager)
                 .select(
-                        qCategoria.id,
-                        qCategoria.descricao
+                        QCategoria.create(
+                                qCategoria.id,
+                                qCategoria.descricao
+                        )
                 )
                 .from(qCategoria);
 

@@ -6,6 +6,8 @@ import br.com.minhascontas.domain.entity.Categoria;
 import br.com.minhascontas.domain.service.CategoriaService;
 import br.com.minhascontas.domain.query.filter.CategoriaFilter;
 import br.com.minhascontas.util.Util;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/categorias")
+@Api("Recurso para o gerenciamento de Categorias.")
 public class CategoriaResource extends ControllerAbstract<Categoria, Long> {
 
     private CategoriaService categoriaService;
@@ -29,6 +32,9 @@ public class CategoriaResource extends ControllerAbstract<Categoria, Long> {
     }
 
     @GetMapping
+    @ApiOperation(value = "Retorna uma lista paginada de Categorias.",
+            notes = "O objeto retornado contém informações de paginação.",
+            response = Categoria[].class)
     public ResponseEntity<RestResponseDTO<Page<Categoria>>> find(@QueryParam CategoriaFilter categoriaFilter,
                                                                  Pageable pageable) {
         return new RestResponseDTO<>(
