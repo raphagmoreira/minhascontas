@@ -34,7 +34,7 @@ public class LancamentoResource extends ControllerAbstract<Lancamento, Long> {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RestResponseDTO<Page<Lancamento>>> find(@QueryParam LancamentoFilter lancamentoFilter,
-                                                                  Pageable pageable) {
+                                                                  @QueryParam Pageable pageable) {
         return new RestResponseDTO<>(
                 lancamentoService.find(lancamentoFilter, pageable),
                 Util.getMessageApplication("entity.read"),
