@@ -36,7 +36,7 @@ public class CategoriaResource extends ControllerAbstract<Categoria, Long> {
             notes = "O objeto retornado contém informações de paginação.",
             response = Categoria[].class)
     public ResponseEntity<RestResponseDTO<Page<Categoria>>> find(@QueryParam CategoriaFilter categoriaFilter,
-                                                                 Pageable pageable) {
+                                                                 @QueryParam Pageable pageable) {
         return new RestResponseDTO<>(
                 categoriaService.find(categoriaFilter, pageable),
                 Util.getMessageApplication("entity.read"),

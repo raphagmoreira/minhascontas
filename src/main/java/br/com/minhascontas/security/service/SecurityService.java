@@ -2,14 +2,13 @@ package br.com.minhascontas.security.service;
 
 import br.com.minhascontas.domain.dto.TokenDTO;
 import br.com.minhascontas.domain.exception.UserNotFoundException;
-import br.com.minhascontas.security.service.TokenAuthenticationService;
+import br.com.minhascontas.security.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -24,23 +23,24 @@ public class SecurityService {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
-    public TokenDTO login(String username, String password, Long userId) throws Exception {
+    public TokenDTO login(br.com.minhascontas.domain.entity.Authentication authentication) throws Exception {
 
         try {
 
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            UserDetails userDetails = userDetailsService.loadUserByUsername(authentication.getUsername());
 
             if (Objects.nonNull(userDetails)) {
 
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, password, userDetails.getAuthorities());
+                        userDetails, authentication.getPassword(), userDetails.getAuthorities()
+                );
 
                 Authentication auth = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
                 if (auth.isAuthenticated()) {
-                    return TokenAuthenticationService.addAuthentication(auth, userId);
+                    return TokenAuthenticationService.addAuthentication(auth);
                 } else {
                     throw new AuthenticationException();
                 }

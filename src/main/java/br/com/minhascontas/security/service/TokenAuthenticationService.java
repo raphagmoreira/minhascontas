@@ -20,11 +20,10 @@ public class TokenAuthenticationService {
     private static final String TOKEN_PREFIX = "Bearer";
     private static final String HEADER_STRING = "Authorization";
 
-    public static TokenDTO addAuthentication(Authentication auth, Long userId) {
+    public static TokenDTO addAuthentication(Authentication auth) {
 
         Claims claims = Jwts.claims().setSubject(auth.getName());
         claims.put("roles", auth.getAuthorities());
-        claims.put("id", userId);
 
         Date expirationDate = new Date(System.currentTimeMillis() + EXPIRATIONTIME);
 

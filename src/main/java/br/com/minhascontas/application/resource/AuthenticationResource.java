@@ -25,10 +25,8 @@ public class AuthenticationResource {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TokenDTO> authentication(@RequestBody Authentication authentication) throws Exception {
-        Usuario usuarioFind = usuarioService.findByUser(authentication.getUsername());
-
         return ResponseEntity.ok(
-                securityService.login(authentication.getUsername(), authentication.getPassword(), usuarioFind.getId())
+                securityService.login(authentication)
         );
     }
 
